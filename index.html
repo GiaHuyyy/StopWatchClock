@@ -41,7 +41,7 @@
         }
         
         .item {
-            /* -webkit-box-reflect: below 10px linear-gradient(transparent, #0004); */
+            -webkit-box-reflect: below 76px linear-gradient(transparent, #0004);
         }
         
         .list .item:last-child .number {
@@ -108,6 +108,7 @@
             <button id="start" class="btn">START</button>
             <button id="stop" class="btn">STOP</button>
             <button id="reset" class="btn">RESET</button>
+            <button id="save" class="btn">SAVE</button>
         </div>
     </div>
     <script>
@@ -123,13 +124,13 @@
             var buttonStart = document.getElementById('start');
             var buttonStop = document.getElementById('stop');
             var buttonReset = document.getElementById('reset');
-            var luu = document.getElementById('luu')
+            var luu = document.getElementById('save');
             var Interval;
 
             buttonStart.onclick = function() {
 
                 clearInterval(Interval);
-                Interval = setInterval(startTimer, 0.0000000001);
+                Interval = setInterval(startTimer, 20);
             }
 
             buttonStop.onclick = function() {
@@ -167,7 +168,7 @@
                 }
 
                 if (tens > 99) {
-                    // console.log("seconds");
+                    console.log("seconds");
                     seconds++;
                     appendSeconds.innerHTML = "0" + seconds;
                     tens = 0;
@@ -199,8 +200,6 @@
                 }
 
             }
-
-
         }
     </script>
 </body>
