@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        .calculator {
+            width: 500px;
+            height: 400px;
+            margin: 30px auto 0;
+            text-align: center;
+            border: 1px solid #ddd;
+            background: rgba(145, 218, 218, 0.4);
+        }
+
+        h1 {
+            color: rgb(23, 180, 180);
+        }
+
+        .result {
+            margin-top: 10px;
+        }
+
+        .text-input {
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            width: 96%;
+            height: 40px;
+            color: rgb(5, 82, 82);
+            background: rgba(126, 207, 207, 0.4);
+            border-color: rgba(69, 153, 153, 0.4);
+            font-size: 16px;
+            outline: none;
+        }
+
+        .text-input::placeholder {
+            letter-spacing: 4px;
+            color: rgb(9, 130, 130);
+        }
+
+        .list {
+            display: flex;   
+            flex-wrap: wrap;
+            gap: 5px;
+            height: calc(100% - 120px);
+            margin: 20px 10px 0;
+        }
+
+        .button {
+            width: calc(25% - 5px);
+            flex-grow: 1; 
+            cursor: pointer;
+            color: rgb(38, 93, 93);
+            border-color: rgba(69, 153, 153, 0.4);
+            background: rgba(69, 153, 153, 0.4);
+        }
+
+        .button:hover {
+            background: rgba(14, 128, 128, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>This is calculator</h1>
+        <div class="result">
+            <input type="text" id="input" class="text-input" placeholder="Result">
+        </div>
+        <div class="list">
+            <button class="button" onclick="btnHandler(this)">7</button>
+            <button class="button" onclick="btnHandler(this)">8</button>
+            <button class="button" onclick="btnHandler(this)">9</button>
+            <button class="button" onclick="btnHandler(this)">+</button>
+            <button class="button" onclick="btnHandler(this)">4</button>
+            <button class="button" onclick="btnHandler(this)">5</button>
+            <button class="button" onclick="btnHandler(this)">6</button>
+            <button class="button" onclick="btnHandler(this)">-</button>
+            <button class="button" onclick="btnHandler(this)">1</button>
+            <button class="button" onclick="btnHandler(this)">2</button>
+            <button class="button" onclick="btnHandler(this)">3</button>
+            <button class="button" onclick="btnHandler(this)">*</button>
+            <button class="button" onclick="btnHandler(this)">0</button>
+            <button class="button" onclick="btnHandler(this)">C</button>
+            <button class="button" onclick="btnHandler(this)">=</button>
+            <button class="button" onclick="btnHandler(this)">/</button>
+        </div>
+    </div>
+    <script>
+        let num1 = "";
+        let num2 = "";
+        let opt;
+
+        function btnHandler(btn) {
+            const preValue = btn.innerText;
+            const resultInput = document.getElementById("input");
+            if(isNaN(preValue)) {
+                if(preValue == "C") {
+                    num1 = "";
+                    num2 = "";
+                    opt = undefined;
+                    resultInput.value ="";
+                    return;
+                }
+                if(preValue == "=") {
+                    const result = perform(num1, num2, opt);
+                    resultInput.value = result;
+                    num1 = "";
+                    num2 = "";
+                    opt = undefined;
+                } else {
+                    opt = preValue;
+                }
+            } else {
+                if (opt) {
+                    num2 += preValue;
+                    resultInput.value = num2;
+                } else {
+                    num1 += preValue;
+                    resultInput.value = num1;
+                }
+            }
+        }
+        
+        function perform(num1, num2, opt) {
+            num1 = Number(num1);
+            num2 = Number(num2);
+
+            switch(opt) {
+                case '+' :
+                    return num1 + num2;
+                    break;
+                case '-' :
+                    return num1 - num2;
+                    break;
+                case '*' :
+                    return num1 * num2;
+                    break;
+                case '/' :
+                    return num1 / num2;
+                    break;            
+            }
+        }
+    </script>
+</body>
+</html>
