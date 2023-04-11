@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +12,7 @@
             box-sizing: border-box;
             padding: 0;
         }
+        
         .calculator {
             width: 500px;
             height: 400px;
@@ -19,15 +21,15 @@
             border: 1px solid #ddd;
             background: rgba(145, 218, 218, 0.4);
         }
-
+        
         h1 {
             color: rgb(23, 180, 180);
         }
-
+        
         .result {
             margin-top: 10px;
         }
-
+        
         .text-input {
             display: block;
             margin: 0 auto;
@@ -40,34 +42,35 @@
             font-size: 16px;
             outline: none;
         }
-
+        
         .text-input::placeholder {
             letter-spacing: 4px;
             color: rgb(9, 130, 130);
         }
-
+        
         .list {
-            display: flex;   
+            display: flex;
             flex-wrap: wrap;
             gap: 5px;
             height: calc(100% - 120px);
             margin: 20px 10px 0;
         }
-
+        
         .button {
             width: calc(25% - 5px);
-            flex-grow: 1; 
+            flex-grow: 1;
             cursor: pointer;
             color: rgb(38, 93, 93);
             border-color: rgba(69, 153, 153, 0.4);
             background: rgba(69, 153, 153, 0.4);
         }
-
+        
         .button:hover {
             background: rgba(14, 128, 128, 0.4);
         }
     </style>
 </head>
+
 <body>
     <div class="calculator">
         <h1>This is calculator</h1>
@@ -101,15 +104,15 @@
         function btnHandler(btn) {
             const preValue = btn.innerText;
             const resultInput = document.getElementById("input");
-            if(isNaN(preValue)) {
-                if(preValue == "C") {
+            if (isNaN(preValue)) {
+                if (preValue == "C") {
                     num1 = "";
                     num2 = "";
                     opt = undefined;
-                    resultInput.value ="";
+                    resultInput.value = "";
                     return;
                 }
-                if(preValue == "=") {
+                if (preValue == "=") {
                     const result = perform(num1, num2, opt);
                     resultInput.value = result;
                     num1 = "";
@@ -128,26 +131,27 @@
                 }
             }
         }
-        
+
         function perform(num1, num2, opt) {
             num1 = Number(num1);
             num2 = Number(num2);
 
-            switch(opt) {
-                case '+' :
+            switch (opt) {
+                case '+':
                     return num1 + num2;
                     break;
-                case '-' :
+                case '-':
                     return num1 - num2;
                     break;
-                case '*' :
+                case '*':
                     return num1 * num2;
                     break;
-                case '/' :
+                case '/':
                     return num1 / num2;
-                    break;            
+                    break;
             }
         }
     </script>
 </body>
+
 </html>
